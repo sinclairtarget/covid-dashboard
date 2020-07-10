@@ -60,16 +60,36 @@ leaders_df = (
     state_cases_df.sort_values('daily_cases_per_cap', ascending=False)
                   .groupby('date')
                   .first()
+)[['fips']]
+
+# "Smooth" out leaders by taking modal state in rolling 7-day window
+# We don't really want to know about any leaders that were leaders for less
+# than a week.
+leaders_df['fips'] = (
+    leaders_df.fips
+              .resample('W', label='left', closed='left') # Label and closed default to 'right'
+              .apply(lambda x: x.mode()[0]) # Just pick first to break ties
+              .resample('D')
+              .ffill()
 )
 
+leaders_df = leaders_df.dropna()
+
+# Rejoin with state cases to recover per cap numbers
+leaders_df = pd.merge(leaders_df, state_cases_df, on=['date', 'fips'])
+
+#pd.set_option('display.max_rows', 200)
+#IPython.embed()
+
 # Join with national cases
-df = pd.merge(national_cases_df, leaders_df, how='left', on='date',
+df = pd.merge(national_cases_df, leaders_df, how='inner', on='date',
               suffixes=('_national', ''))
 
 df = df.rename(columns={ 'fips': 'leader_fips',
                          'state': 'leader_name',
                          'daily_cases': 'leader_daily_cases',
                          'daily_cases_per_cap': 'leader_daily_cases_per_cap'})
+
 df[['date',
     'cases_national',
     'leader_name',

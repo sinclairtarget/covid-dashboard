@@ -1,0 +1,43 @@
+@import 'colors';
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+h1, h2, h3, h4 {
+    font-family: Verdana, sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    background-color: $body-background-color;
+}
+
+header {
+    color: $inverse-text-color;
+    background-color: $header-color;
+
+    .title {
+        margin: 0;
+        padding: 12px;
+    }
+}
+
+main {
+    flex: 1 1 auto;
+    display: flex;
+    justify-content: center;
+}
+
+.graph-container {
+    flex: 1 1 auto;
+    margin: 40px;
+    background-color: $graph-background-color;
+    min-width: 600px;
+    max-width: 1200px;
+    min-height: 300px;
+    max-height: 600px;
+}

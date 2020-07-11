@@ -120,7 +120,9 @@ export default class Graph {
       this.panel.append("g")
                 .attr('class', 'info-box')
                 .attr("transform", util.transl(this.dim.padding.left + 20,
-                                               this.dim.padding.top + 12)));
+                                               this.dim.padding.top + 12)),
+      this.colorScale
+    );
 
     this.update(plotWidth / 2, 0);
 

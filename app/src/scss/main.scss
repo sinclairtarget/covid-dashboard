@@ -79,4 +79,12 @@ svg {
         stroke: $faded-text-color;
         stroke-dasharray: 2 6;
     }
+
+    .info-box svg {
+        display: none;
+
+        &.active {
+            display: block;
+        }
+    }
 }

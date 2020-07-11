@@ -1,8 +1,9 @@
 import * as d3 from 'd3';
+import StateOutline from './state-outline.js';
 
 // Info box
 export default class Box {
-  constructor(parentElement) {
+  constructor(parentElement, colorScale) {
     this.root = parentElement;
     this.root.append('rect')
              .attr('x', 0)
@@ -48,11 +49,14 @@ export default class Box {
                            .attr('y', 153)
                            .attr('class', 'data-num')
                            .text('0');
+
+    this.stateOutline = new StateOutline(this.root, colorScale);
   }
 
   update(datum) {
     this.state.text(datum['leader_name']);
     this.absoluteNum.text(d3.format(',')(datum['leader_daily_cases']));
     this.capNum.text(d3.format(',')(datum['leader_daily_cases_per_cap']));
+    this.stateOutline.show(datum['leader_fips']);
   }
 };

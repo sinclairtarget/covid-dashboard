@@ -32,7 +32,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin({
       cleanOnceBeforeBuildPatterns: [
-        '**/*', '!images', '!images/**/*', '!fonts', '!fonts/**/*'
+        '**/*', '!images', '!images/**/*', '!fonts', '!fonts/**/*', '!data.json'
       ]
     }),
     new MiniCssExtractPlugin({

@@ -49,7 +49,7 @@ export default class StateOutline {
         child.setAttribute('class', `fips-${fips}`);
         this.root.select(`svg.fips-${fips}`)
                  .attr('x', 8)
-                 .attr('y', 17)
+                 .attr('y', 43)
                  .attr('width', 180)
                  .attr('height', 180)
                  .style('fill', this.colorScale(fips));

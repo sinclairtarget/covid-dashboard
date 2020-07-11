@@ -157,7 +157,7 @@ export default class Graph {
       this.line.attr('x1', this.dim.padding.left + x)
                .attr('x2', this.dim.padding.left + x);
       this.dateLabel.attr('x', this.dim.padding.left + x)
-                    .text(this.formatDate(date));
+                    .text(util.formatDate(date));
 
       // Activate segment
       this.plot.select(`.period-${datum['period']}`)
@@ -210,9 +210,5 @@ export default class Graph {
     }
 
     return null;
-  }
-
-  formatDate(date) {
-    return `${date.getMonth()}/${date.getDate()}/${date.getFullYear()}`;
   }
 }

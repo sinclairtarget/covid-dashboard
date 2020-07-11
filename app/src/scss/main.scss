@@ -58,6 +58,10 @@ svg {
         font-size: 26px;
     }
 
+    text.per-cap-data-num {
+        fill: $highlight-color;
+    }
+
     .axis path, .axis line {
         stroke: $faded-text-color;
     }
@@ -72,12 +76,17 @@ svg {
     }
 
     text.date-label {
-        font-size: 11px;
+        font-size: 14px;
     }
 
     .grid path, .grid line {
         stroke: $faded-text-color;
         stroke-dasharray: 2 6;
+    }
+
+    .info-box text.date-label {
+        fill: $faded-text-color;
+        font-size: 16px;
     }
 
     .info-box svg {

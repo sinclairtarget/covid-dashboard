@@ -1,6 +1,8 @@
 # COVID Dashboard Exercise
 A data visualization intended for a future historian.
 
+![](./demo.gif)
+
 ## Running Locally
 From the `app` folder, run:
 

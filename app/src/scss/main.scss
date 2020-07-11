@@ -87,4 +87,14 @@ svg {
             display: block;
         }
     }
+
+    text.heading {
+        text-transform: none;
+        font-size: 26px;
+    }
+
+    text.subheading {
+        text-transform: none;
+        font-size: 16px;
+    }
 }

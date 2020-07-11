@@ -14,7 +14,7 @@ const chartMargin = {
 };
 
 const chartPadding = {
-  top: 60,
+  top: 70,
   right: 40,
   bottom: 60,
   left: 94

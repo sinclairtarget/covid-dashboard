@@ -9,8 +9,6 @@ export default class Graph {
   }
 
   setUp(data) {
-    this.data = data;
-
     // Create plot area and grid lines
     let panelWidth = this.dim.panelWidth();
     let panelHeight = this.dim.panelHeight();
@@ -124,6 +122,19 @@ export default class Graph {
       this.colorScale
     );
 
+    // Add title
+    this.panel.append('text')
+              .attr('class', 'heading')
+              .attr('x', 0)
+              .attr('y', 20)
+              .text('States of Fear');
+
+    this.panel.append('text')
+              .attr('class', 'subheading')
+              .attr('x', 0)
+              .attr('y', 46)
+              .text('The States that Worried Americans during the 2020 Coronavirus Pandemic');
+
     this.update(plotWidth / 2, 0);
 
     return this.svg;
@@ -164,31 +175,26 @@ export default class Graph {
 
   // Split data into contiguous segments/periods
   split(data) {
-    let splitData = [];
-    let lastFips = null;
+    let splitData = [[]];
+    let lastD = null;
     let period = 1;               // Unique period index
     data.forEach(d => {
-
-      if (d['leader_fips'] != lastFips)
+      if (lastD && d['leader_fips'] != lastD['leader_fips'])
       {
-        if (splitData.length > 0)
-        {
-          // Make sure period overlap so there are no holes in the graph
-          // "Close" last period with first date of this period
-          let copy = Object.assign({}, d);
-          copy['period'] = period;
-          copy['leader_fips'] = lastFips;
-          splitData.slice(-1)[0].push(copy);
+        // Add extra data to avoid holes in graph
+        let copy = Object.assign({}, lastD);
+        copy['period'] = period;
+        copy['date'] = d['date'];
+        copy['cases_national'] = d['cases_national'];
+        splitData.slice(-1)[0].push(copy);
 
-          period += 1;
-        }
-
+        period += 1;
         splitData.push([]);
       }
 
       d['period'] = period;
       splitData.slice(-1)[0].push(d);
-      lastFips = d['leader_fips'];
+      lastD = d;
     });
 
     return splitData;

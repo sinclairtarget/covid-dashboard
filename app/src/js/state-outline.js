@@ -39,7 +39,7 @@ export default class StateOutline {
   }
 
   fetch(fips) {
-    d3.svg(`/images/${fips}.svg`)
+    d3.svg(`images/${fips}.svg`)
       .then(fragment => {
         let svg = fragment.getElementsByTagName('svg')[0];
         let child = this.root.node()

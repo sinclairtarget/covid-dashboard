@@ -14,10 +14,10 @@ const chartMargin = {
 };
 
 const chartPadding = {
-  top: 40,
+  top: 60,
   right: 40,
-  bottom: 40,
-  left: 80
+  bottom: 60,
+  left: 94
 };
 
 const dim = new Dimensions(chartWidth, chartHeight, chartMargin, chartPadding);
@@ -25,15 +25,20 @@ const dim = new Dimensions(chartWidth, chartHeight, chartMargin, chartPadding);
 window.app = {};
 window.app.graph = new Graph(dim);
 
-window.app.renderGraph = (data) => {
+window.app.setUpGraph = (data) => {
   // Parse dates
-  data = data.map(record => {
+  window.app.data = data.map(record => {
     record['date'] = new Date(record['date']);
     return record;
   });
 
-  console.log(data);
-  window.app.graph.draw(data);
+  console.log(window.app.data);
+  let svg = window.app.graph.setUp(window.app.data);
+
+  // Register mouse listener
+  svg.on('mousemove', () => {
+    window.app.graph.handleMouse();
+  });
 };
 
 window.onload = (ev) => {
@@ -41,7 +46,7 @@ window.onload = (ev) => {
 
   fetch.json('data.json')
     .then((res) => {
-      window.app.renderGraph(res);
+      window.app.setUpGraph(res);
     })
     .catch((err) => {
       console.error(err);

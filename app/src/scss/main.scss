@@ -41,3 +41,42 @@ main {
     min-height: 300px;
     max-height: 600px;
 }
+
+svg {
+    text {
+        text-transform: uppercase;
+        font-family: Verdana, sans-serif;
+        fill: $text-color;
+    }
+
+    text.label {
+        fill: $faded-text-color;
+        font-size: 12px;
+    }
+
+    text.data-num {
+        font-size: 26px;
+    }
+
+    .axis path, .axis line {
+        stroke: $faded-text-color;
+    }
+
+    .axis text {
+        fill: $faded-text-color;
+    }
+
+    text.axis-title {
+        fill: $faded-text-color;
+        font-size: 11px;
+    }
+
+    text.date-label {
+        font-size: 11px;
+    }
+
+    .grid path, .grid line {
+        stroke: $faded-text-color;
+        stroke-dasharray: 2 6;
+    }
+}

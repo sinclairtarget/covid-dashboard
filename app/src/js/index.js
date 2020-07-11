@@ -32,7 +32,6 @@ window.app.setUpGraph = (data) => {
     return record;
   });
 
-  console.log(window.app.data);
   let svg = window.app.graph.setUp(window.app.data);
 
   // Register mouse listener
@@ -42,8 +41,6 @@ window.app.setUpGraph = (data) => {
 };
 
 window.onload = (ev) => {
-  console.log("Hello, world!");
-
   fetch.json('data.json')
     .then((res) => {
       window.app.setUpGraph(res);

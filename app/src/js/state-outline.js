@@ -39,8 +39,6 @@ export default class StateOutline {
   }
 
   fetch(fips) {
-    console.log('Beginning fetch.');
-
     d3.svg(`/images/${fips}.svg`)
       .then(fragment => {
         let svg = fragment.getElementsByTagName('svg')[0];

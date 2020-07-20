@@ -27,3 +27,6 @@ You can then run the script with:
 ```
 $ pipenv run python generate.py > app/dist/data.json
 ```
+
+## Rationale / Thought Process
+See [rationale.md](./rationale.md).
